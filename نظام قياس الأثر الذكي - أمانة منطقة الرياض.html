@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام قياس الأثر الذكي - أمانة منطقة الرياض</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #059669 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .metric-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .impact-indicator {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .impact-indicator::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .impact-indicator:hover::before {
+            left: 100%;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+        
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.5s ease-in-out;
+        }
+        
+        .animated-counter {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #059669, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        .prediction-badge {
+            background: linear-gradient(45deg, #8b5cf6, #a855f7);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .roi-indicator {
+            background: radial-gradient(circle at center, #065f46 0%, #047857 100%);
+        }
+        
+        .social-impact-meter {
+            background: conic-gradient(from 0deg, #ef4444 0deg, #f59e0b 120deg, #10b981 240deg, #059669 360deg);
+            border-radius: 50%;
+            padding: 3px;
+        }
+        
+        .ai-badge {
+            background: linear-gradient(45deg, #6366f1, #8b5cf6);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 10px rgba(99, 102, 241, 0.5); }
+            to { box-shadow: 0 0 20px rgba(99, 102, 241, 0.8); }
+        }
+        
+        .comparison-bar {
+            background: linear-gradient(90deg, #e5e7eb 0%, #10b981 var(--progress, 0%));
+            transition: all 0.8s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-6 px-8">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center">
+                    <i class="fas fa-city text-blue-600 text-2xl"></i>
+                </div>
+                <div class="text-right">
+                    <h1 class="text-3xl font-bold mb-1">نظام قياس الأثر الذكي</h1>
+                    <p class="text-blue-100">أمانة منطقة الرياض</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-6 space-x-reverse">
+                <div class="ai-badge text-white px-4 py-2 rounded-full text-sm font-semibold">
+                    <i class="fas fa-brain mr-2"></i>مدعوم بالذكاء الاصطناعي
+                </div>
+                <div class="text-right">
+                    <p class="text-sm opacity-90">آخر تحديث</p>
+                    <p class="font-semibold">15 نوفمبر 2024</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Key Metrics Dashboard -->
+    <section class="px-8 py-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+            <i class="fas fa-chart-line text-green-600 ml-3"></i>
+            مؤشرات الأثر الرئيسية
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <!-- Social Impact Score -->
+            <div class="metric-card card-hover p-6 rounded-lg impact-indicator">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="social-impact-meter w-12 h-12 flex items-center justify-center">
+                        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                            <i class="fas fa-users text-green-600 text-sm"></i>
+                        </div>
+                    </div>
+                    <span class="prediction-badge">+12% متوقع</span>
+                </div>
+                <div class="animated-counter mb-2">8.4</div>
+                <p class="text-gray-600 font-semibold">مؤشر الأثر الاجتماعي</p>
+                <div class="mt-3 bg-gray-200 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-green-500 to-emerald-600 h-2 rounded-full" style="width: 84%"></div>
+                </div>
+            </div>
+
+            <!-- Economic ROI -->
+            <div class="metric-card card-hover p-6 rounded-lg impact-indicator">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="roi-indicator w-12 h-12 rounded-full flex items-center justify-center">
+                        <i class="fas fa-chart-bar text-white"></i>
+                    </div>
+                    <span class="prediction-badge">+18% متوقع</span>
+                </div>
+                <div class="animated-counter mb-2">342%</div>
+                <p class="text-gray-600 font-semibold">العائد الاجتماعي على الاستثمار</p>
+                <div class="mt-3 bg-gray-200 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full" style="width: 95%"></div>
+                </div>
+            </div>
+
+            <!-- Environmental Impact -->
+            <div class="metric-card card-hover p-6 rounded-lg impact-indicator">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-leaf text-white"></i>
+                    </div>
+                    <span class="prediction-badge">+8% متوقع</span>
+                </div>
+                <div class="animated-counter mb-2">92.3</div>
+                <p class="text-gray-600 font-semibold">مؤشر الأثر البيئي</p>
+                <div class="mt-3 bg-gray-200 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-green-400 to-teal-500 h-2 rounded-full" style="width: 92%"></div>
+                </div>
+            </div>
+
+            <!-- Community Engagement -->
+            <div class="metric-card card-hover p-6 rounded-lg impact-indicator">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-handshake text-white"></i>
+                    </div>
+                    <span class="prediction-badge">+25% متوقع</span>
+                </div>
+                <div class="animated-counter mb-2">76.8K</div>
+                <p class="text-gray-600 font-semibold">المشاركة المجتمعية</p>
+                <div class="mt-3 bg-gray-200 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-orange-500 to-red-500 h-2 rounded-full" style="width: 77%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Analytics -->
+    <section class="px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Impact Trend Analysis -->
+            <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-bold text-gray-800 flex items-center">
+                        <i class="fas fa-trending-up text-blue-600 ml-3"></i>
+                        تحليل اتجاهات الأثر
+                    </h3>
+                    <div class="ai-badge text-white px-3 py-1 rounded-full text-xs">
+                        <i class="fas fa-robot mr-1"></i>تحليل ذكي
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="impactTrendChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Impact Distribution -->
+            <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-bold text-gray-800 flex items-center">
+                        <i class="fas fa-pie-chart text-purple-600 ml-3"></i>
+                        توزيع الأثر حسب القطاع
+                    </h3>
+                    <div class="text-sm text-gray-600">إجمالي: 127 مشروع</div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="impactDistributionChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Analysis -->
+    <section class="px-8 py-8">
+        <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-bold text-gray-800 flex items-center">
+                    <i class="fas fa-calculator text-green-600 ml-3"></i>
+                    تحليل العائد على الاستثمار الاجتماعي
+                </h3>
+                <div class="flex space-x-4 space-x-reverse">
+                    <span class="prediction-badge">AI Prediction</span>
+                    <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">متفوق</span>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- ROI Metrics -->
+                <div class="space-y-4">
+                    <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-gray-600">الاستثمار الأولي</span>
+                            <i class="fas fa-coins text-green-600"></i>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-800">15.2 مليون ريال</div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-gray-600">القيمة الاجتماعية المُحققة</span>
+                            <i class="fas fa-heart text-blue-600"></i>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-800">52.1 مليون ريال</div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-purple-50 to-violet-50 p-4 rounded-lg">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-gray-600">العائد المتوقع (2025)</span>
+                            <i class="fas fa-crystal-ball text-purple-600"></i>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-800">68.4 مليون ريال</div>
+                    </div>
+                </div>
+                
+                <!-- ROI Visualization -->
+                <div class="lg:col-span-2">
+                    <div class="chart-container">
+                        <canvas id="roiChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparative Analysis -->
+    <section class="px-8 py-8">
+        <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-bold text-gray-800 flex items-center">
+                    <i class="fas fa-balance-scale text-indigo-600 ml-3"></i>
+                    التحليل المقارن والمعايرة
+                </h3>
+                <div class="text-sm text-gray-600">مقارنة مع أفضل الممارسات العالمية</div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Benchmark Comparison -->
+                <div class="space-y-6">
+                    <h4 class="font-semibold text-gray-800 flex items-center">
+                        <i class="fas fa-globe ml-2 text-blue-600"></i>
+                        مقارنة المعايير الدولية
+                    </h4>
+                    
+                    <div class="space-y-4">
+                        <div class="comparison-item">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium text-gray-700">برشلونة (أسبانيا)</span>
+                                <span class="text-sm font-bold text-gray-800">7.8/10</span>
+                            </div>
+                            <div class="comparison-bar h-3 rounded-full" style="--progress: 78%"></div>
+                        </div>
+                        
+                        <div class="comparison-item">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium text-gray-700">الرياض (السعودية)</span>
+                                <span class="text-sm font-bold text-green-600">8.4/10</span>
+                            </div>
+                            <div class="comparison-bar h-3 rounded-full" style="--progress: 84%"></div>
+                        </div>
+                        
+                        <div class="comparison-item">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium text-gray-700">سنغافورة</span>
+                                <span class="text-sm font-bold text-gray-800">8.1/10</span>
+                            </div>
+                            <div class="comparison-bar h-3 rounded-full" style="--progress: 81%"></div>
+                        </div>
+                        
+                        <div class="comparison-item">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium text-gray-700">أمستردام (هولندا)</span>
+                                <span class="text-sm font-bold text-gray-800">7.9/10</span>
+                            </div>
+                            <div class="comparison-bar h-3 rounded-full" style="--progress: 79%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Performance Indicators -->
+                <div>
+                    <div class="chart-container">
+                        <canvas id="performanceRadar"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Predictions -->
+    <section class="px-8 py-8">
+        <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-6 card-hover border border-indigo-200">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-bold text-gray-800 flex items-center">
+                    <i class="fas fa-brain text-purple-600 ml-3"></i>
+                    التنبؤات الذكية والتوصيات
+                </h3>
+                <div class="ai-badge text-white px-4 py-2 rounded-full text-sm">
+                    <i class="fas fa-magic mr-2"></i>مدعوم بالذكاء الاصطناعي
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Prediction 1 -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-3">
+                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-arrow-trend-up text-green-600 text-sm"></i>
+                        </div>
+                        <span class="mr-3 font-semibold text-gray-800">نمو متوقع</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">التنبؤ للربع القادم</p>
+                    <div class="text-2xl font-bold text-green-600 mb-2">+23%</div>
+                    <p class="text-xs text-gray-500">زيادة في المشاركة المجتمعية</p>
+                </div>
+                
+                <!-- Prediction 2 -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-3">
+                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-lightbulb text-blue-600 text-sm"></i>
+                        </div>
+                        <span class="mr-3 font-semibold text-gray-800">توصية ذكية</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">قطاع مُوصى للتركيز</p>
+                    <div class="text-lg font-bold text-blue-600 mb-2">التعليم</div>
+                    <p class="text-xs text-gray-500">أعلى عائد متوقع: 450%</p>
+                </div>
+                
+                <!-- Prediction 3 -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-3">
+                        <div class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-exclamation-triangle text-orange-600 text-sm"></i>
+                        </div>
+                        <span class="mr-3 font-semibold text-gray-800">تحذير مبكر</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">مخاطر محتملة</p>
+                    <div class="text-lg font-bold text-orange-600 mb-2">منخفضة</div>
+                    <p class="text-xs text-gray-500">معدل الثقة: 94%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Impact Map -->
+    <section class="px-8 py-8">
+        <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-bold text-gray-800 flex items-center">
+                    <i class="fas fa-map-marked-alt text-red-600 ml-3"></i>
+                    خريطة الأثر التفاعلية
+                </h3>
+                <div class="flex space-x-2 space-x-reverse">
+                    <button class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">الكل</button>
+                    <button class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">اجتماعي</button>
+                    <button class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">اقتصادي</button>
+                    <button class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">بيئي</button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-green-500 rounded-full mx-auto mb-2 flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">42</span>
+                    </div>
+                    <p class="text-xs text-gray-600">مشاريع نشطة</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-blue-500 rounded-full mx-auto mb-2 flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">18</span>
+                    </div>
+                    <p class="text-xs text-gray-600">أحياء مغطاة</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-purple-500 rounded-full mx-auto mb-2 flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">85K</span>
+                    </div>
+                    <p class="text-xs text-gray-600">مستفيد</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-orange-500 rounded-full mx-auto mb-2 flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">127</span>
+                    </div>
+                    <p class="text-xs text-gray-600">شريك</p>
+                </div>
+            </div>
+            
+            <div class="bg-gray-100 rounded-lg h-64 flex items-center justify-center">
+                <div class="text-center">
+                    <i class="fas fa-map text-4xl text-gray-400 mb-4"></i>
+                    <p class="text-gray-600">خريطة تفاعلية لمشاريع الأثر</p>
+                    <p class="text-sm text-gray-500">عرض جغرافي للمشاريع والنتائج</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comprehensive Reports -->
+    <section class="px-8 py-8">
+        <div class="bg-white rounded-lg shadow-lg p-6 card-hover">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-bold text-gray-800 flex items-center">
+                    <i class="fas fa-file-chart-column text-indigo-600 ml-3"></i>
+                    التقارير الشاملة
+                </h3>
+                <div class="flex space-x-2 space-x-reverse">
+                    <button class="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-semibold hover:bg-indigo-700">
+                        <i class="fas fa-download mr-2"></i>تصدير التقرير
+                    </button>
+                    <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-200">
+                        <i class="fas fa-share mr-2"></i>مشاركة
+                    </button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Monthly Report -->
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-calendar-alt text-blue-600"></i>
+                        </div>
+                        <div class="mr-3">
+                            <h4 class="font-semibold text-gray-800">التقرير الشهري</h4>
+                            <p class="text-xs text-gray-500">نوفمبر 2024</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">صفحات:</span>
+                            <span class="font-semibold">24</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">مؤشرات:</span>
+                            <span class="font-semibold">18</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">الحالة:</span>
+                            <span class="text-green-600 font-semibold">مكتمل</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quarterly Analysis -->
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-chart-pie text-green-600"></i>
+                        </div>
+                        <div class="mr-3">
+                            <h4 class="font-semibold text-gray-800">التحليل الربع سنوي</h4>
+                            <p class="text-xs text-gray-500">Q4 2024</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">صفحات:</span>
+                            <span class="font-semibold">45</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">مؤشرات:</span>
+                            <span class="font-semibold">32</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">الحالة:</span>
+                            <span class="text-orange-600 font-semibold">قيد الإعداد</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Annual Impact -->
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-trophy text-purple-600"></i>
+                        </div>
+                        <div class="mr-3">
+                            <h4 class="font-semibold text-gray-800">تقرير الأثر السنوي</h4>
+                            <p class="text-xs text-gray-500">2024</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">صفحات:</span>
+                            <span class="font-semibold">78</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">مؤشرات:</span>
+                            <span class="font-semibold">56</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">الحالة:</span>
+                            <span class="text-blue-600 font-semibold">مجدول</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 px-8">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                    <i class="fas fa-city text-gray-800"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold">أمانة منطقة الرياض</h4>
+                    <p class="text-sm text-gray-300">نظام قياس الأثر الذكي</p>
+                </div>
+            </div>
+            <div class="text-right">
+                <p class="text-sm text-gray-300">© 2024 أمانة منطقة الرياض</p>
+                <p class="text-xs text-gray-400">جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Impact Trend Chart
+        const impactTrendCtx = document.getElementById('impactTrendChart').getContext('2d');
+        new Chart(impactTrendCtx, {
+            type: 'line',
+            data: {
+                labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر'],
+                datasets: [
+                    {
+                        label: 'الأثر الاجتماعي',
+                        data: [6.2, 6.8, 7.1, 7.5, 7.8, 8.0, 8.1, 8.3, 8.2, 8.4, 8.4],
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    },
+                    {
+                        label: 'العائد الاقتصادي',
+                        data: [280, 295, 310, 325, 330, 335, 340, 338, 341, 342, 345],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        rtl: true
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Impact Distribution Chart
+        const impactDistCtx = document.getElementById('impactDistributionChart').getContext('2d');
+        new Chart(impactDistCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['التعليم', 'الصحة', 'البيئة', 'الثقافة', 'الرياضة', 'التنمية الاجتماعية'],
+                datasets: [{
+                    data: [32, 24, 18, 12, 8, 6],
+                    backgroundColor: [
+                        '#10b981',
+                        '#3b82f6',
+                        '#f59e0b',
+                        '#ef4444',
+                        '#8b5cf6',
+                        '#06b6d4'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        rtl: true
+                    }
+                }
+            }
+        });
+
+        // ROI Chart
+        const roiCtx = document.getElementById('roiChart').getContext('2d');
+        new Chart(roiCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2022', '2023', '2024', '2025 (متوقع)'],
+                datasets: [
+                    {
+                        label: 'الاستثمار (مليون ريال)',
+                        data: [8.5, 12.2, 15.2, 18.5],
+                        backgroundColor: 'rgba(239, 68, 68, 0.7)',
+                    },
+                    {
+                        label: 'العائد (مليون ريال)',
+                        data: [28.9, 41.7, 52.1, 68.4],
+                        backgroundColor: 'rgba(16, 185, 129, 0.7)',
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        rtl: true
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Performance Radar Chart
+        const radarCtx = document.getElementById('performanceRadar').getContext('2d');
+        new Chart(radarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['كفاءة التنفيذ', 'جودة الشراكات', 'الأثر المجتمعي', 'الاستدامة', 'الابتكار', 'الشفافية'],
+                datasets: [{
+                    label: 'أداء الرياض',
+                    data: [8.4, 8.7, 9.1, 8.2, 8.8, 9.0],
+                    borderColor: '#10b981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                    pointBackgroundColor: '#10b981',
+                }, {
+                    label: 'المعيار العالمي',
+                    data: [7.8, 8.0, 8.2, 7.9, 8.1, 8.3],
+                    borderColor: '#6b7280',
+                    backgroundColor: 'rgba(107, 114, 128, 0.1)',
+                    pointBackgroundColor: '#6b7280',
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        rtl: true
+                    }
+                },
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 10
+                    }
+                }
+            }
+        });
+
+        // Animate progress bars
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBars = document.querySelectorAll('.comparison-bar');
+            progressBars.forEach(bar => {
+                setTimeout(() => {
+                    bar.style.background = `linear-gradient(90deg, #e5e7eb 0%, #10b981 ${bar.style.getPropertyValue('--progress')})`;
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDoI6d1h%2FH0iGffA3dR9Nd2Ve4xX%2BFltBMYxrj8IIUm9BMbDVEnUwFfZHjvSpgHUPmY5KSG%2FZp%2B%2Fg1CacyPEoWNnMx5P6pfkKietRI93JQhZLTc7BMMn%2BLMcgApryVErDziM%2BF1C1Fcrbfzkx5v5YZ55AS8NfM1cUN8wkZ7qeud7FpxJHolJAawBkYQonTWBFFrsK3OMoy%2FCEM8UtYHKTy3HFLzqD25FVr6D6tC0zwDodANiyDpev0OTXytxlkJ7QLckyXRtdAaPAYqtFvYgIPY7HbKN6AgC788BjA6gJxmt11bvcO%2FFkAv7u1YAHSVRL0WFJGS6OuvEv2r7hdmpE5vLUs%2Bj8YZMD0TaYJgJ%2BRujJDiI7%2FTeSgOA%2BPpLmbDi%2F1J%2BvfLBflrFxaqQW5cTpNByvBcqy2w3GGcZ6mK7F1ENgUyGENSZMG%2FjacS9aWPgRYfmCP2DifksssprMiKw2uVOcoMzO1dT16%2B%2BOfS2%2FZzFOPzqwpB9hmVozoOqcnQ5sZ1h%2Fb67xKipoowJY%2F2UoaqI%3D";
+        window.__genspark_locale = "en-US";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDoI6d1h/H0iGffA3dR9Nd2Ve4xX+FltBMYxrj8IIUm9BMbDVEnUwFfZHjvSpgHUPmY5KSG/Zp+/g1CacyPEoWNnMx5P6pfkKietRI93JQhZLTc7BMMn+LMcgApryVErDziM+F1C1Fcrbfzkx5v5YZ55AS8NfM1cUN8wkZ7qeud7FpxJHolJAawBkYQonTWBFFrsK3OMoy/CEM8UtYHKTy3HFLzqD25FVr6D6tC0zwDodANiyDpev0OTXytxlkJ7QLckyXRtdAaPAYqtFvYgIPY7HbKN6AgC788BjA6gJxmt11bvcO/FkAv7u1YAHSVRL0WFJGS6OuvEv2r7hdmpE5vLUs+j8YZMD0TaYJgJ+RujJDiI7/TeSgOA+PpLmbDi/1J+vfLBflrFxaqQW5cTpNByvBcqy2w3GGcZ6mK7F1ENgUyGENSZMG/jacS9aWPgRYfmCP2DifksssprMiKw2uVOcoMzO1dT16++OfS2/ZzFOPzqwpB9hmVozoOqcnQ5sZ1h/b67xKipoowJY/2UoaqI=";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+    
