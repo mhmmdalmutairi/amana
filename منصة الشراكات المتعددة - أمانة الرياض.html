@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة الشراكات المتعددة - أمانة الرياض</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f4c3a 0%, #2d7a5e 50%, #4a9d7a 100%);
+        }
+        
+        .card-shadow {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .card-shadow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .gold-accent {
+            color: #d4af37;
+        }
+        
+        .green-accent {
+            color: #0f4c3a;
+        }
+        
+        .partnership-card {
+            border-left: 5px solid #d4af37;
+            transition: all 0.3s ease;
+        }
+        
+        .partnership-card:hover {
+            border-left-width: 10px;
+        }
+        
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        
+        .chart-container {
+            height: 300px;
+        }
+        
+        .tab-active {
+            background: linear-gradient(135deg, #0f4c3a 0%, #2d7a5e 100%);
+            color: white;
+        }
+        
+        .tab-inactive {
+            background: #f8f9fa;
+            color: #6c757d;
+        }
+        
+        .tab-inactive:hover {
+            background: #e9ecef;
+            color: #0f4c3a;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header Section -->
+    <div class="gradient-bg text-white p-6 mb-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center space-x-reverse space-x-4">
+                    <div class="bg-white p-3 rounded-full">
+                        <i class="fas fa-city text-2xl green-accent"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold">منصة الشراكات المتعددة</h1>
+                        <p class="text-green-200">أمانة منطقة الرياض - إدارة تمكين القطاع غير الربحي</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-reverse space-x-4">
+                    <div class="bg-white p-2 rounded-lg">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiByeD0iOCIgZmlsbD0iIzBmNGMzYSIvPgo8dGV4dCB4PSIyMCIgeT0iMjUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7amYjYsdmI7ZeCPC90ZXh0Pgo8L3N2Zz4K" alt="شعار الأمانة" class="w-10 h-10">
+                    </div>
+                    <div class="text-right text-sm">
+                        <p class="font-semibold">إدارة تمكين القطاع غير الربحي</p>
+                        <p class="text-green-200">الوكالة المساعدة للمشاركة المجتمعية</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 space-y-6">
+        <!-- Partnership Overview -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            <div class="bg-white rounded-xl card-shadow p-6 text-center">
+                <div class="bg-gradient-to-r from-green-500 to-green-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-handshake text-white text-xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold green-accent">127</h3>
+                <p class="text-gray-600">شراكة نشطة</p>
+            </div>
+            <div class="bg-white rounded-xl card-shadow p-6 text-center">
+                <div class="bg-gradient-to-r from-blue-500 to-blue-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-users text-white text-xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-blue-600">67</h3>
+                <p class="text-gray-600">جمعية شريكة</p>
+            </div>
+            <div class="bg-white rounded-xl card-shadow p-6 text-center">
+                <div class="bg-gradient-to-r from-purple-500 to-purple-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-building text-white text-xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-purple-600">43</h3>
+                <p class="text-gray-600">شركة مساهمة</p>
+            </div>
+            <div class="bg-white rounded-xl card-shadow p-6 text-center">
+                <div class="bg-gradient-to-r from-yellow-500 to-yellow-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-project-diagram text-white text-xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-yellow-600">89</h3>
+                <p class="text-gray-600">مشروع مشترك</p>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="bg-white rounded-xl card-shadow overflow-hidden">
+            <div class="flex border-b">
+                <button class="tab-active px-6 py-4 flex-1 text-center font-semibold transition-all duration-300" onclick="switchTab('projects')">
+                    <i class="fas fa-project-diagram mr-2"></i>
+                    إدارة المشاريع المشتركة
+                </button>
+                <button class="tab-inactive px-6 py-4 flex-1 text-center font-semibold transition-all duration-300" onclick="switchTab('resources')">
+                    <i class="fas fa-cogs mr-2"></i>
+                    إدارة الموارد
+                </button>
+                <button class="tab-inactive px-6 py-4 flex-1 text-center font-semibold transition-all duration-300" onclick="switchTab('evaluation')">
+                    <i class="fas fa-chart-line mr-2"></i>
+                    نظام التقييم المتبادل
+                </button>
+                <button class="tab-inactive px-6 py-4 flex-1 text-center font-semibold transition-all duration-300" onclick="switchTab('coordination')">
+                    <i class="fas fa-network-wired mr-2"></i>
+                    التنسيق الاستراتيجي
+                </button>
+            </div>
+
+            <!-- Projects Tab -->
+            <div id="projects-tab" class="tab-content p-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold green-accent mb-4">المشاريع النشطة</h3>
+                        
+                        <div class="partnership-card bg-gray-50 rounded-lg p-4">
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">تطوير حدائق الأحياء الذكية</h4>
+                                    <p class="text-sm text-gray-600">شراكة: الأمانة + جمعية البيئة + شركة المراعي</p>
+                                </div>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">نشط</span>
+                            </div>
+                            <div class="mb-3">
+                                <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                    <span>التقدم</span>
+                                    <span>78%</span>
+                                </div>
+                                <div class="bg-gray-200 rounded-full h-2">
+                                    <div class="bg-gradient-to-r from-green-500 to-green-600 h-2 rounded-full" style="width: 78%"></div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">الميزانية: 2.5M ريال</span>
+                                <span class="text-gray-600">المدة: 12 شهر</span>
+                            </div>
+                        </div>
+
+                        <div class="partnership-card bg-gray-50 rounded-lg p-4">
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">برنامج النظافة المجتمعية</h4>
+                                    <p class="text-sm text-gray-600">شراكة: الأمانة + جمعية البر + البنك الأهلي</p>
+                                </div>
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold">قيد التخطيط</span>
+                            </div>
+                            <div class="mb-3">
+                                <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                    <span>التقدم</span>
+                                    <span>23%</span>
+                                </div>
+                                <div class="bg-gray-200 rounded-full h-2">
+                                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full" style="width: 23%"></div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">الميزانية: 1.8M ريال</span>
+                                <span class="text-gray-600">المدة: 8 أشهر</span>
+                            </div>
+                        </div>
+
+                        <div class="partnership-card bg-gray-50 rounded-lg p-4">
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">مراكز الأحياء التفاعلية</h4>
+                                    <p class="text-sm text-gray-600">شراكة: الأمانة + جمعية التطوير + STC</p>
+                                </div>
+                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-semibold">مكتمل</span>
+                            </div>
+                            <div class="mb-3">
+                                <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                    <span>التقدم</span>
+                                    <span>100%</span>
+                                </div>
+                                <div class="bg-gray-200 rounded-full h-2">
+                                    <div class="bg-gradient-to-r from-purple-500 to-purple-600 h-2 rounded-full" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">الميزانية: 3.2M ريال</span>
+                                <span class="text-gray-600">المدة: 18 شهر</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold green-accent mb-4">توزيع المشاريع حسب النوع</h3>
+                        <div class="chart-container">
+                            <canvas id="projectsChart"></canvas>
+                        </div>
+                        
+                        <div class="mt-6 space-y-2">
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded">
+                                <span class="text-gray-700">مشاريع البنية التحتية</span>
+                                <span class="font-semibold green-accent">32 مشروع</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded">
+                                <span class="text-gray-700">مشاريع البيئة والاستدامة</span>
+                                <span class="font-semibold text-blue-600">28 مشروع</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded">
+                                <span class="text-gray-700">المشاريع الاجتماعية</span>
+                                <span class="font-semibold text-purple-600">18 مشروع</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded">
+                                <span class="text-gray-700">مشاريع التقنية والابتكار</span>
+                                <span class="font-semibold text-yellow-600">11 مشروع</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resources Tab -->
+            <div id="resources-tab" class="tab-content p-6 hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold green-accent mb-4">توزيع الموارد</h3>
+                        <div class="chart-container">
+                            <canvas id="resourcesChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold green-accent mb-4">المساهمات حسب القطاع</h3>
+                        
+                        <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-4 border-r-4 border-green-500">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold">أمانة الرياض</span>
+                                <span class="font-bold green-accent">45M ريال</span>
+                            </div>
+                            <div class="text-sm text-gray-600">البنية التحتية والخدمات الأساسية</div>
+                            <div class="mt-2 bg-white rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 60%"></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-4 border-r-4 border-blue-500">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold">القطاع الخاص</span>
+                                <span class="font-bold text-blue-600">28M ريال</span>
+                            </div>
+                            <div class="text-sm text-gray-600">التمويل والموارد التقنية</div>
+                            <div class="mt-2 bg-white rounded-full h-2">
+                                <div class="bg-blue-500 h-2 rounded-full" style="width: 40%"></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg p-4 border-r-4 border-purple-500">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold">القطاع غير الربحي</span>
+                                <span class="font-bold text-purple-600">12M ريال</span>
+                            </div>
+                            <div class="text-sm text-gray-600">الخبرات والموارد البشرية</div>
+                            <div class="mt-2 bg-white rounded-full h-2">
+                                <div class="bg-purple-500 h-2 rounded-full" style="width: 25%"></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-lg p-4 border-r-4 border-yellow-500">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-semibold">الجهات الحكومية</span>
+                                <span class="font-bold text-yellow-600">8M ريال</span>
+                            </div>
+                            <div class="text-sm text-gray-600">التسهيلات والدعم التنظيمي</div>
+                            <div class="mt-2 bg-white rounded-full h-2">
+                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 20%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Evaluation Tab -->
+            <div id="evaluation-tab" class="tab-content p-6 hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold green-accent mb-4">تقييم الأداء الشامل</h3>
+                        <div class="chart-container">
+                            <canvas id="evaluationChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold green-accent mb-4">معايير التقييم المتبادل</h3>
+                        
+                        <div class="space-y-3">
+                            <div class="bg-white rounded-lg p-4 border border-gray-200">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold">جودة التنفيذ</span>
+                                    <div class="flex items-center">
+                                        <span class="text-green-600 font-bold mr-2">4.8</span>
+                                        <div class="flex text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-sm text-gray-600">متوسط تقييم جميع المشاريع المكتملة</div>
+                            </div>
+
+                            <div class="bg-white rounded-lg p-4 border border-gray-200">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold">الالتزام بالمواعيد</span>
+                                    <div class="flex items-center">
+                                        <span class="text-blue-600 font-bold mr-2">4.6</span>
+                                        <div class="flex text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-sm text-gray-600">نسبة الالتزام بالجداول الزمنية</div>
+                            </div>
+
+                            <div class="bg-white rounded-lg p-4 border border-gray-200">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold">التعاون والتنسيق</span>
+                                    <div class="flex items-center">
+                                        <span class="text-purple-600 font-bold mr-2">4.7</span>
+                                        <div class="flex text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-sm text-gray-600">مستوى التعاون بين الشركاء</div>
+                            </div>
+
+                            <div class="bg-white rounded-lg p-4 border border-gray-200">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-semibold">الأثر المجتمعي</span>
+                                    <div class="flex items-center">
+                                        <span class="text-yellow-600 font-bold mr-2">4.9</span>
+                                        <div class="flex text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-sm text-gray-600">مقياس التأثير الإيجابي على المجتمع</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg p-4 mt-6">
+                            <h4 class="font-bold mb-2">التقييم الإجمالي</h4>
+                            <div class="flex items-center justify-between">
+                                <span class="text-2xl font-bold">4.75 / 5.0</span>
+                                <div class="text-right">
+                                    <div class="text-sm">ممتاز</div>
+                                    <div class="text-xs opacity-80">مستوى الشراكات</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coordination Tab -->
+            <div id="coordination-tab" class="tab-content p-6 hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold green-accent mb-4">خريطة الشركاء الاستراتيجيين</h3>
+                        <div class="bg-gray-50 rounded-lg p-6 h-80 flex items-center justify-center relative">
+                            <!-- Central Node -->
+                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-full w-24 h-24 flex items-center justify-center z-10">
+                                <div class="text-center">
+                                    <i class="fas fa-city text-xl mb-1"></i>
+                                    <div class="text-xs font-semibold">أمانة الرياض</div>
+                                </div>
+                            </div>
+
+                            <!-- Partner Nodes -->
+                            <div class="absolute top-4 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white rounded-full w-16 h-16 flex items-center justify-center">
+                                <div class="text-center">
+                                    <i class="fas fa-users text-sm mb-1"></i>
+                                    <div class="text-xs">الجمعيات</div>
+                                </div>
+                            </div>
+
+                            <div class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-purple-500 text-white rounded-full w-16 h-16 flex items-center justify-center">
+                                <div class="text-center">
+                                    <i class="fas fa-building text-sm mb-1"></i>
+                                    <div class="text-xs">القطاع الخاص</div>
+                                </div>
+                            </div>
+
+                            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-yellow-500 text-white rounded-full w-16 h-16 flex items-center justify-center">
+                                <div class="text-center">
+                                    <i class="fas fa-landmark text-sm mb-1"></i>
+                                    <div class="text-xs">الجهات الحكومية</div>
+                                </div>
+                            </div>
+
+                            <div class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-red-500 text-white rounded-full w-16 h-16 flex items-center justify-center">
+                                <div class="text-center">
+                                    <i class="fas fa-globe text-sm mb-1"></i>
+                                    <div class="text-xs">شركاء دوليين</div>
+                                </div>
+                            </div>
+
+                            <!-- Connection Lines -->
+                            <svg class="absolute inset-0 w-full h-full">
+                                <line x1="50%" y1="50%" x2="50%" y2="20%" stroke="#cbd5e0" stroke-width="2" stroke-dasharray="5,5"/>
+                                <line x1="50%" y1="50%" x2="80%" y2="50%" stroke="#cbd5e0" stroke-width="2" stroke-dasharray="5,5"/>
+                                <line x1="50%" y1="50%" x2="50%" y2="80%" stroke="#cbd5e0" stroke-width="2" stroke-dasharray="5,5"/>
+                                <line x1="50%" y1="50%" x2="20%" y2="50%" stroke="#cbd5e0" stroke-width="2" stroke-dasharray="5,5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold green-accent mb-4">آليات التنسيق الاستراتيجي</h3>
+                        
+                        <div class="bg-white rounded-lg p-4 border-r-4 border-green-500">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-calendar-alt text-green-500 mr-3"></i>
+                                <span class="font-semibold">اجتماعات المجلس الاستراتيجي</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">اجتماع شهري لمراجعة الأداء والتخطيط للمبادرات الجديدة</p>
+                            <div class="text-xs text-green-600 font-semibold">التالي: 15 فبراير 2025</div>
+                        </div>
+
+                        <div class="bg-white rounded-lg p-4 border-r-4 border-blue-500">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-video text-blue-500 mr-3"></i>
+                                <span class="font-semibold">ورش العمل التخصصية</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">ورش عمل ربع سنوية لتبادل الخبرات وأفضل الممارسات</p>
+                            <div class="text-xs text-blue-600 font-semibold">القادم: ورشة البيئة والاستدامة</div>
+                        </div>
+
+                        <div class="bg-white rounded-lg p-4 border-r-4 border-purple-500">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-chart-bar text-purple-500 mr-3"></i>
+                                <span class="font-semibold">تقارير الأداء المشتركة</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">تقارير دورية موحدة لقياس أثر الشراكات</p>
+                            <div class="text-xs text-purple-600 font-semibold">آخر تقرير: يناير 2025</div>
+                        </div>
+
+                        <div class="bg-white rounded-lg p-4 border-r-4 border-yellow-500">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-lightbulb text-yellow-500 mr-3"></i>
+                                <span class="font-semibold">منصة الابتكار المشترك</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">مساحة لطرح الأفكار المبتكرة والحلول المشتركة</p>
+                            <div class="text-xs text-yellow-600 font-semibold">34 فكرة قيد التطوير</div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg p-4">
+                            <h4 class="font-bold mb-2">مؤشرات التنسيق</h4>
+                            <div class="space-y-2">
+                                <div class="flex justify-between">
+                                    <span>معدل التفاعل</span>
+                                    <span class="font-bold">89%</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>مستوى الرضا</span>
+                                    <span class="font-bold">4.6/5.0</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>كفاءة التنسيق</span>
+                                    <span class="font-bold">92%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="bg-white rounded-xl card-shadow p-6">
+            <div class="flex flex-wrap gap-4 justify-center">
+                <button class="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
+                    <i class="fas fa-plus mr-2"></i>إنشاء شراكة جديدة
+                </button>
+                <button class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
+                    <i class="fas fa-download mr-2"></i>تحميل التقرير الشامل
+                </button>
+                <button class="bg-gradient-to-r from-purple-500 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
+                    <i class="fas fa-cog mr-2"></i>إعدادات المنصة
+                </button>
+                <button class="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
+                    <i class="fas fa-bell mr-2"></i>إدارة التنبيهات
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('button[onclick*="switchTab"]').forEach(tab => {
+                tab.className = tab.className.replace('tab-active', 'tab-inactive');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName + '-tab').classList.remove('hidden');
+            
+            // Add active class to selected tab
+            event.target.className = event.target.className.replace('tab-inactive', 'tab-active');
+        }
+
+        // Initialize charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Projects Chart
+            const projectsCtx = document.getElementById('projectsChart');
+            if (projectsCtx) {
+                new Chart(projectsCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['البنية التحتية', 'البيئة والاستدامة', 'المشاريع الاجتماعية', 'التقنية والابتكار'],
+                        datasets: [{
+                            data: [32, 28, 18, 11],
+                            backgroundColor: ['#0f4c3a', '#3b82f6', '#8b5cf6', '#eab308']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    font: {
+                                        family: 'Cairo'
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Resources Chart
+            const resourcesCtx = document.getElementById('resourcesChart');
+            if (resourcesCtx) {
+                new Chart(resourcesCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['أمانة الرياض', 'القطاع الخاص', 'القطاع غير الربحي', 'جهات حكومية'],
+                        datasets: [{
+                            data: [45, 28, 12, 8],
+                            backgroundColor: ['#0f4c3a', '#3b82f6', '#8b5cf6', '#eab308']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    font: {
+                                        family: 'Cairo'
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Evaluation Chart
+            const evaluationCtx = document.getElementById('evaluationChart');
+            if (evaluationCtx) {
+                new Chart(evaluationCtx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['جودة التنفيذ', 'الالتزام بالمواعيد', 'التعاون والتنسيق', 'الأثر المجتمعي', 'الابتكار', 'الاستدامة'],
+                        datasets: [{
+                            label: 'تقييم الأداء',
+                            data: [4.8, 4.6, 4.7, 4.9, 4.5, 4.4],
+                            backgroundColor: 'rgba(15, 76, 58, 0.2)',
+                            borderColor: '#0f4c3a',
+                            pointBackgroundColor: '#0f4c3a',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: '#0f4c3a'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            r: {
+                                beginAtZero: true,
+                                max: 5,
+                                ticks: {
+                                    stepSize: 1
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    font: {
+                                        family: 'Cairo'
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDoU%2F57a3zH853GtZJTEI1jr%2FomHPKNVG%2BS12aT6Rg0qde63hB1g3eOGgbKFCahBq4ydaZYPcYtW2RMNm%2F3u43O%2FMAP3hwGnVTvMNsrJsWOjY%2BuVIqPwjp2%2BB4FFh4oQhfCIzDmm4pp8cuSP7Pw74giC7s1m1mFRSh%2FIdrzeGQ0YA8e2LPuM%2B5LQ3jj4SJ04%2F9BtcrPmebemO6LcCPuo5wepKzXHdVzV8RcjBfZQcR69qEZd1dNZpCdGPUhwwpDYlDUC9pTXJBA359IyGkOKx87J7J%2BIJ9HUzghRTIhsPNs0uJsn6ETcnrEeei499cg%2F6I8mHgA4DpPX1k4%2B7UygULtxHgSu8KzjcuH0MqjbpasQ489%2FYcJ4pd1L92d0dcEtE0ojdQUMZFEKU9M3Vz7edgDqUfaTyt9UCbTo2Nnbs2fpOLS5oyTv3H64iq6aQjXPnzVNad5dDX%2FGC%2BzjjrXrk%2BaFPQUjGuFWryngigv5qg5bFiG2DQ9SvYdWq3xt2u2mG733HT5bH1UqitNa%2BYVp6i4M%3D";
+        window.__genspark_locale = "en-US";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDoU/57a3zH853GtZJTEI1jr/omHPKNVG+S12aT6Rg0qde63hB1g3eOGgbKFCahBq4ydaZYPcYtW2RMNm/3u43O/MAP3hwGnVTvMNsrJsWOjY+uVIqPwjp2+B4FFh4oQhfCIzDmm4pp8cuSP7Pw74giC7s1m1mFRSh/IdrzeGQ0YA8e2LPuM+5LQ3jj4SJ04/9BtcrPmebemO6LcCPuo5wepKzXHdVzV8RcjBfZQcR69qEZd1dNZpCdGPUhwwpDYlDUC9pTXJBA359IyGkOKx87J7J+IJ9HUzghRTIhsPNs0uJsn6ETcnrEeei499cg/6I8mHgA4DpPX1k4+7UygULtxHgSu8KzjcuH0MqjbpasQ489/YcJ4pd1L92d0dcEtE0ojdQUMZFEKU9M3Vz7edgDqUfaTyt9UCbTo2Nnbs2fpOLS5oyTv3H64iq6aQjXPnzVNad5dDX/GC+zjjrXrk+aFPQUjGuFWryngigv5qg5bFiG2DQ9SvYdWq3xt2u2mG733HT5bH1UqitNa+YVp6i4M=";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+    
