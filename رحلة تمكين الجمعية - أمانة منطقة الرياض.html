@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رحلة تمكين الجمعية - أمانة منطقة الرياض</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+        
+        .phase-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .phase-card:hover {
+            border-color: #16a34a;
+            box-shadow: 0 8px 30px rgba(34, 197, 94, 0.15);
+        }
+        
+        .phase-number {
+            background: linear-gradient(135deg, #16a34a, #059669);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            margin: 0 auto 16px;
+        }
+        
+        .timeline-connector {
+            position: relative;
+            background: #e5e7eb;
+            width: 4px;
+            height: 60px;
+            margin: 0 auto;
+        }
+        
+        .timeline-connector::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: #16a34a;
+            border-radius: 50%;
+        }
+        
+        .feature-item {
+            background: #f8fafc;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-right: 4px solid #16a34a;
+            margin-bottom: 8px;
+        }
+        
+        .header-logo {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stats-box {
+            background: linear-gradient(135deg, #16a34a, #059669);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .kpi-card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            border-right: 4px solid #3b82f6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-6 py-6">
+            <div class="flex items-center justify-between">
+                <div class="header-logo flex items-center">
+                    <div class="w-16 h-16 bg-green-600 rounded-lg flex items-center justify-center ml-4">
+                        <i class="fas fa-city text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-800">أمانة منطقة الرياض</h1>
+                        <p class="text-gray-600">إدارة التنمية المجتمعية والقطاع غير الربحي</p>
+                    </div>
+                </div>
+                <div class="text-left">
+                    <div class="w-16 h-16 bg-blue-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-handshake text-white text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-6 py-8">
+        <!-- Title Section -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">رحلة تمكين الجمعية</h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                دليل شامل لمراحل الشراكة الاستراتيجية بين الجمعيات الأهلية وأمانة منطقة الرياض
+            </p>
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="stats-box">
+                    <div class="text-3xl font-bold mb-2">4</div>
+                    <div class="text-sm">مراحل أساسية</div>
+                </div>
+                <div class="stats-box">
+                    <div class="text-3xl font-bold mb-2">18</div>
+                    <div class="text-sm">شهر للتطوير</div>
+                </div>
+                <div class="stats-box">
+                    <div class="text-3xl font-bold mb-2">59+</div>
+                    <div class="text-sm">خدمة بلدية</div>
+                </div>
+                <div class="stats-box">
+                    <div class="text-3xl font-bold mb-2">100%</div>
+                    <div class="text-sm">شراكة مستدامة</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overview Timeline -->
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-12">
+            <h2 class="text-2xl font-bold text-center mb-8 text-gray-800">الخط الزمني الإجمالي للرحلة</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="phase-number">1</div>
+                    <h3 class="font-bold text-lg mb-2">التقييم والقبول</h3>
+                    <p class="text-gray-600 text-sm">3 أشهر</p>
+                </div>
+                <div class="timeline-connector hidden md:block mt-8"></div>
+                <div class="text-center">
+                    <div class="phase-number">2</div>
+                    <h3 class="font-bold text-lg mb-2">التأهيل والإعداد</h3>
+                    <p class="text-gray-600 text-sm">6 أشهر</p>
+                </div>
+                <div class="timeline-connector hidden md:block mt-8"></div>
+                <div class="text-center">
+                    <div class="phase-number">3</div>
+                    <h3 class="font-bold text-lg mb-2">التجريب والتطوير</h3>
+                    <p class="text-gray-600 text-sm">9 أشهر</p>
+                </div>
+                <div class="timeline-connector hidden md:block mt-8"></div>
+                <div class="text-center">
+                    <div class="phase-number">4</div>
+                    <h3 class="font-bold text-lg mb-2">الشراكة الاستراتيجية</h3>
+                    <p class="text-gray-600 text-sm">مستمرة</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 1: Assessment and Acceptance -->
+        <div class="phase-card p-8 mb-12">
+            <div class="flex items-center mb-8">
+                <div class="phase-number ml-4">1</div>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800">المرحلة الأولى: التقييم والقبول</h2>
+                    <p class="text-gray-600 text-lg">مدة التنفيذ: 3 أشهر</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-6 text-green-700">الأنشطة والإجراءات:</h3>
+                    <div class="space-y-3">
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-file-alt text-green-600 ml-3"></i>
+                                <span class="font-medium">تقديم الطلب والوثائق المطلوبة</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-600 ml-3"></i>
+                                <span class="font-medium">فحص معايير الأهلية الأساسية (التسجيل الرسمي، الخبرة، الموارد)</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-chart-line text-green-600 ml-3"></i>
+                                <span class="font-medium">تقييم القدرات المؤسسية والإدارية</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-history text-green-600 ml-3"></i>
+                                <span class="font-medium">مراجعة الأداء السابق والسمعة</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-users text-green-600 ml-3"></i>
+                                <span class="font-medium">لجنة التقييم والمقابلات</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-clipboard-check text-green-600 ml-3"></i>
+                                <span class="font-medium">إصدار قرار القبول أو الرفض مع الأسباب</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-arrow-up text-green-600 ml-3"></i>
+                                <span class="font-medium">توجيه الجمعيات المرفوضة للتحسين</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6 text-blue-700">مؤشرات الأداء الرئيسية:</h3>
+                    <div class="space-y-4">
+                        <div class="kpi-card">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">معدل القبول المستهدف</span>
+                                <span class="font-bold text-2xl text-blue-600">40%</span>
+                            </div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">متوسط وقت التقييم</span>
+                                <span class="font-bold text-2xl text-blue-600">45 يوم</span>
+                            </div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">عدد الجمعيات المستهدف</span>
+                                <span class="font-bold text-2xl text-blue-600">50</span>
+                            </div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">نسبة رضا المتقدمين</span>
+                                <span class="font-bold text-2xl text-blue-600">85%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="text-lg font-bold mb-4 text-gray-700">المخرجات المتوقعة:</h4>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-center"><i class="fas fa-circle text-green-500 text-xs ml-2"></i> قائمة بالجمعيات المقبولة والمؤهلة</li>
+                                <li class="flex items-center"><i class="fas fa-circle text-green-500 text-xs ml-2"></i> تقرير تفصيلي لكل جمعية</li>
+                                <li class="flex items-center"><i class="fas fa-circle text-green-500 text-xs ml-2"></i> خطة التطوير الفردية</li>
+                                <li class="flex items-center"><i class="fas fa-circle text-green-500 text-xs ml-2"></i> قاعدة بيانات محدثة</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 2: Training and Preparation -->
+        <div class="phase-card p-8 mb-12">
+            <div class="flex items-center mb-8">
+                <div class="phase-number ml-4">2</div>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800">المرحلة الثانية: التأهيل والإعداد</h2>
+                    <p class="text-gray-600 text-lg">مدة التنفيذ: 6 أشهر</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-6 text-green-700">الأنشطة والإجراءات:</h3>
+                    <div class="space-y-3">
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-building text-green-600 ml-3"></i>
+                                <span class="font-medium">برنامج التطوير المؤسسي الشامل</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-workshop text-green-600 ml-3"></i>
+                                <span class="font-medium">ورش عمل تخصصية في إدارة المشاريع</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-book-open text-green-600 ml-3"></i>
+                                <span class="font-medium">تدريب على اللوائح والأنظمة البلدية</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-cogs text-green-600 ml-3"></i>
+                                <span class="font-medium">تطوير السياسات والإجراءات الداخلية</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-laptop text-green-600 ml-3"></i>
+                                <span class="font-medium">بناء القدرات التقنية والرقمية</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-calculator text-green-600 ml-3"></i>
+                                <span class="font-medium">إعداد خطط العمل والميزانيات</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-certificate text-green-600 ml-3"></i>
+                                <span class="font-medium">تقييم التقدم وإصدار شهادات الإنجاز</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6 text-blue-700">البرامج التدريبية:</h3>
+                    <div class="space-y-4">
+                        <div class="bg-gradient-to-r from-blue-50 to-green-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-gray-800 mb-2">المحور الإداري</h4>
+                            <ul class="text-sm space-y-1">
+                                <li>• الحوكمة والإدارة الاستراتيجية</li>
+                                <li>• إدارة الموارد البشرية والمالية</li>
+                                <li>• التخطيط والمتابعة</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gradient-to-r from-blue-50 to-green-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-gray-800 mb-2">المحور التقني</h4>
+                            <ul class="text-sm space-y-1">
+                                <li>• الأنظمة الرقمية والمنصات</li>
+                                <li>• إدارة البيانات والتقارير</li>
+                                <li>• التحول الرقمي</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gradient-to-r from-blue-50 to-green-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-gray-800 mb-2">المحور التخصصي</h4>
+                            <ul class="text-sm space-y-1">
+                                <li>• الخدمات البلدية وتطبيقاتها</li>
+                                <li>• معايير الجودة والأداء</li>
+                                <li>• إدارة العلاقات مع المجتمع</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h4 class="text-lg font-bold mb-4 text-gray-700">جدول زمني للتدريب:</h4>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="grid grid-cols-2 gap-4 text-sm">
+                                <div class="flex justify-between"><span>الشهر 1-2:</span> <span class="font-bold">التطوير المؤسسي</span></div>
+                                <div class="flex justify-between"><span>الشهر 3-4:</span> <span class="font-bold">ورش تخصصية</span></div>
+                                <div class="flex justify-between"><span>الشهر 5:</span> <span class="font-bold">تطبيق عملي</span></div>
+                                <div class="flex justify-between"><span>الشهر 6:</span> <span class="font-bold">تقييم وشهادات</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 3: Trial and Development -->
+        <div class="phase-card p-8 mb-12">
+            <div class="flex items-center mb-8">
+                <div class="phase-number ml-4">3</div>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800">المرحلة الثالثة: التجريب والتطوير</h2>
+                    <p class="text-gray-600 text-lg">مدة التنفيذ: 9 أشهر</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-6 text-green-700">الأنشطة والإجراءات:</h3>
+                    <div class="space-y-3">
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-rocket text-green-600 ml-3"></i>
+                                <span class="font-medium">تنفيذ مشاريع تجريبية محددة</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-eye text-green-600 ml-3"></i>
+                                <span class="font-medium">الإشراف والمتابعة الميدانية المستمرة</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-analytics text-green-600 ml-3"></i>
+                                <span class="font-medium">تقييم الأداء وقياس النتائج</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-sync-alt text-green-600 ml-3"></i>
+                                <span class="font-medium">التطوير والتحسين بناء على التغذية الراجعة</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-file-invoice text-green-600 ml-3"></i>
+                                <span class="font-medium">تقارير التقدم الدورية</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-trophy text-green-600 ml-3"></i>
+                                <span class="font-medium">معايير النجاح والانتقال للمرحلة التالية</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6 text-blue-700">المشاريع التجريبية:</h3>
+                    <div class="space-y-4">
+                        <div class="bg-blue-50 p-4 rounded-lg border-r-4 border-blue-500">
+                            <h4 class="font-bold text-gray-800 mb-2">مشروع النظافة البيئية</h4>
+                            <p class="text-sm text-gray-600">تنفيذ برامج التوعية وحملات النظافة في الأحياء</p>
+                            <div class="mt-2 text-xs">
+                                <span class="bg-blue-100 px-2 py-1 rounded">3 أشهر</span>
+                                <span class="bg-green-100 px-2 py-1 rounded mr-2">5 أحياء</span>
+                            </div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg border-r-4 border-green-500">
+                            <h4 class="font-bold text-gray-800 mb-2">مشروع الحدائق المجتمعية</h4>
+                            <p class="text-sm text-gray-600">إنشاء وصيانة الحدائق بمشاركة المجتمع</p>
+                            <div class="mt-2 text-xs">
+                                <span class="bg-blue-100 px-2 py-1 rounded">6 أشهر</span>
+                                <span class="bg-green-100 px-2 py-1 rounded mr-2">3 حدائق</span>
+                            </div>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded-lg border-r-4 border-yellow-500">
+                            <h4 class="font-bold text-gray-800 mb-2">مشروع الأنشطة الثقافية</h4>
+                            <p class="text-sm text-gray-600">تنظيم فعاليات ثقافية ومجتمعية</p>
+                            <div class="mt-2 text-xs">
+                                <span class="bg-blue-100 px-2 py-1 rounded">9 أشهر</span>
+                                <span class="bg-green-100 px-2 py-1 rounded mr-2">12 فعالية</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h4 class="text-lg font-bold mb-4 text-gray-700">آلية المتابعة والتقييم:</h4>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="grid grid-cols-1 gap-3 text-sm">
+                                <div class="flex items-center justify-between">
+                                    <span>تقارير أسبوعية</span>
+                                    <i class="fas fa-calendar-week text-gray-500"></i>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span>زيارات ميدانية شهرية</span>
+                                    <i class="fas fa-map-marker-alt text-gray-500"></i>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span>تقييم ربع سنوي</span>
+                                    <i class="fas fa-chart-pie text-gray-500"></i>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span>مراجعة نهائية</span>
+                                    <i class="fas fa-clipboard-check text-gray-500"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 4: Strategic Partnership -->
+        <div class="phase-card p-8 mb-12">
+            <div class="flex items-center mb-8">
+                <div class="phase-number ml-4">4</div>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800">المرحلة الرابعة: الشراكة الاستراتيجية</h2>
+                    <p class="text-gray-600 text-lg">مدة التنفيذ: مستمرة</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-6 text-green-700">الأنشطة والإجراءات:</h3>
+                    <div class="space-y-3">
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-handshake text-green-600 ml-3"></i>
+                                <span class="font-medium">توقيع اتفاقيات الشراكة الرسمية</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-tasks text-green-600 ml-3"></i>
+                                <span class="font-medium">تفويض الخدمات والمسؤوليات</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-monitor-heart-rate text-green-600 ml-3"></i>
+                                <span class="font-medium">نظام المراقبة والتقييم المستمر</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-expand-arrows-alt text-green-600 ml-3"></i>
+                                <span class="font-medium">التوسع والنمو في الخدمات</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-network-wired text-green-600 ml-3"></i>
+                                <span class="font-medium">الشراكات متعددة الأطراف</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="flex items-center">
+                                <i class="fas fa-impact text-green-600 ml-3"></i>
+                                <span class="font-medium">قياس الأثر والعائد على المجتمع</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6 text-blue-700">الخدمات المفوضة:</h3>
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-gradient-to-r from-green-100 to-blue-100 p-3 rounded-lg text-center">
+                                <i class="fas fa-leaf text-green-600 text-2xl mb-2"></i>
+                                <p class="font-bold text-sm">الخدمات البيئية</p>
+                                <p class="text-xs text-gray-600">15+ خدمة</p>
+                            </div>
+                            <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-lg text-center">
+                                <i class="fas fa-users text-blue-600 text-2xl mb-2"></i>
+                                <p class="font-bold text-sm">الخدمات المجتمعية</p>
+                                <p class="text-xs text-gray-600">20+ خدمة</p>
+                            </div>
+                            <div class="bg-gradient-to-r from-purple-100 to-pink-100 p-3 rounded-lg text-center">
+                                <i class="fas fa-palette text-purple-600 text-2xl mb-2"></i>
+                                <p class="font-bold text-sm">الخدمات الثقافية</p>
+                                <p class="text-xs text-gray-600">12+ خدمة</p>
+                            </div>
+                            <div class="bg-gradient-to-r from-yellow-100 to-orange-100 p-3 rounded-lg text-center">
+                                <i class="fas fa-tools text-orange-600 text-2xl mb-2"></i>
+                                <p class="font-bold text-sm">الخدمات الفنية</p>
+                                <p class="text-xs text-gray-600">12+ خدمة</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h4 class="text-lg font-bold mb-4 text-gray-700">مؤشرات الأداء طويلة المدى:</h4>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-green-600 mb-1">95%</div>
+                                    <div class="text-xs text-gray-600">رضا المستفيدين</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-blue-600 mb-1">85%</div>
+                                    <div class="text-xs text-gray-600">كفاءة التنفيذ</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-purple-600 mb-1">100K+</div>
+                                    <div class="text-xs text-gray-600">مستفيد مباشر</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-orange-600 mb-1">25%</div>
+                                    <div class="text-xs text-gray-600">توفير في التكلفة</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Factors -->
+        <div class="bg-gradient-to-r from-green-600 to-blue-600 text-white rounded-2xl p-8 mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8">عوامل النجاح الحاسمة</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="text-center">
+                    <i class="fas fa-compass text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">الرؤية الواضحة</h3>
+                    <p class="text-sm opacity-90">أهداف محددة ومؤشرات قابلة للقياس</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-heart text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">الالتزام المشترك</h3>
+                    <p class="text-sm opacity-90">شراكة حقيقية بين جميع الأطراف</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-rocket text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">التطوير المستمر</h3>
+                    <p class="text-sm opacity-90">تحسين مستمر وابتكار في الحلول</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="bg-white rounded-2xl shadow-lg p-8 text-center">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">للاستفسار والمزيد من المعلومات</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-phone text-green-600 text-2xl mb-2"></i>
+                    <h3 class="font-bold">الهاتف</h3>
+                    <p class="text-gray-600">920012345</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-envelope text-blue-600 text-2xl mb-2"></i>
+                    <h3 class="font-bold">البريد الإلكتروني</h3>
+                    <p class="text-gray-600">ngo@riyadh.gov.sa</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-globe text-purple-600 text-2xl mb-2"></i>
+                    <h3 class="font-bold">الموقع الإلكتروني</h3>
+                    <p class="text-gray-600">www.riyadh.gov.sa</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-16">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="mb-4">&copy; 2024 أمانة منطقة الرياض - جميع الحقوق محفوظة</p>
+            <p class="text-sm text-gray-400">نحو مجتمع حيوي ومستدام من خلال الشراكات الفعالة</p>
+        </div>
+    </footer>
+</body>
+</html>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDv6WQv228OSUck8DpY7UzlykEMLQKQHGl2jxJYcZ8pU4IbSStcU2F3BpglGKV7U5gxZIhgrIZvHS6fNR77Xz%2Fc4WgY%2F6PmeIFJkKFj6ZFeYcv6zBr54ieq061r6JUu%2FXBQAfELMFNmGmJa9xPa3CKkObiOBAkXfWPii%2FIVT7DoRHqQfZcGB4MvyOFaIjpHAWInINuclf%2FJhRLUaYHRGad9BfoV7ldyyUig8uW5OsNZmUa%2F0nmb7%2FCCGbrrsB%2BOiKn9BeVGaovUvIAFMChjrvAYd8ZC6ZmorgI4LnsmQjcsZJC8R91Ih1fObnaqPMKKfys6fHAPEo62qGwRK7is7A7ou76rIJ487A6ISVNRd9WLWnWLG2ejnELiITYSl%2FCvMfnJcBLgpk%2FcaYWUFkkd7x8RaSu7EG0KVjzkTq2Moq0BqWcbmTQ8x%2F%2F0YOS7yoSycb5Jd6LSQUWEhvub2vfOnhYMj8AfwJ3M7NgDMQ%2BWciszUoxpdC%2Ben3kBBWxwqgE8hjCYZEkDM%2BoMOmrK6YH%2F28xhM%3D";
+        window.__genspark_locale = "en-US";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDv6WQv228OSUck8DpY7UzlykEMLQKQHGl2jxJYcZ8pU4IbSStcU2F3BpglGKV7U5gxZIhgrIZvHS6fNR77Xz/c4WgY/6PmeIFJkKFj6ZFeYcv6zBr54ieq061r6JUu/XBQAfELMFNmGmJa9xPa3CKkObiOBAkXfWPii/IVT7DoRHqQfZcGB4MvyOFaIjpHAWInINuclf/JhRLUaYHRGad9BfoV7ldyyUig8uW5OsNZmUa/0nmb7/CCGbrrsB+OiKn9BeVGaovUvIAFMChjrvAYd8ZC6ZmorgI4LnsmQjcsZJC8R91Ih1fObnaqPMKKfys6fHAPEo62qGwRK7is7A7ou76rIJ487A6ISVNRd9WLWnWLG2ejnELiITYSl/CvMfnJcBLgpk/caYWUFkkd7x8RaSu7EG0KVjzkTq2Moq0BqWcbmTQ8x//0YOS7yoSycb5Jd6LSQUWEhvub2vfOnhYMj8AfwJ3M7NgDMQ+WciszUoxpdC+en3kBBWxwqgE8hjCYZEkDM+oMOmrK6YH/28xhM=";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+    
