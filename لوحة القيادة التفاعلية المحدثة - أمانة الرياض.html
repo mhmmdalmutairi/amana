@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة القيادة التفاعلية المحدثة - أمانة الرياض</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .riyadh-green { color: #2d5a2d; }
+        .riyadh-blue { color: #1e3a8a; }
+        .bg-riyadh-green { background-color: #2d5a2d; }
+        .bg-riyadh-blue { background-color: #1e3a8a; }
+        .gradient-riyadh {
+            background: linear-gradient(135deg, #2d5a2d 0%, #1e3a8a 100%);
+        }
+        .alert-success { background-color: #d1fae5; color: #065f46; }
+        .alert-warning { background-color: #fef3c7; color: #92400e; }
+        .alert-danger { background-color: #fee2e2; color: #991b1b; }
+        .dashboard-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="p-6">
+    <!-- Header -->
+    <div class="mb-8">
+        <div class="flex items-center justify-between bg-white rounded-2xl p-6 shadow-xl">
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <div class="w-16 h-16 bg-riyadh-green rounded-full flex items-center justify-center">
+                    <i class="fas fa-city text-white text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-3xl font-bold riyadh-green">لوحة القيادة التفاعلية</h1>
+                    <p class="text-gray-600">أمانة منطقة الرياض - تمكين القطاع غير الربحي</p>
+                </div>
+            </div>
+            <div class="text-left">
+                <div class="text-sm text-gray-500">آخر تحديث</div>
+                <div class="text-lg font-semibold riyadh-blue">الثلاثاء, 17 ديسمبر 2024</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- KPI Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="dashboard-card p-6 card-hover">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm text-gray-600 mb-2">الجمعيات المشتركة</p>
+                    <p class="text-3xl font-bold riyadh-green">156</p>
+                    <p class="text-sm text-green-600 flex items-center mt-1">
+                        <i class="fas fa-arrow-up ml-1"></i> +23% هذا الشهر
+                    </p>
+                </div>
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-handshake text-green-600 text-xl"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-card p-6 card-hover">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm text-gray-600 mb-2">المشاريع النشطة</p>
+                    <p class="text-3xl font-bold riyadh-blue">89</p>
+                    <p class="text-sm text-blue-600 flex items-center mt-1">
+                        <i class="fas fa-arrow-up ml-1"></i> +15% هذا الشهر
+                    </p>
+                </div>
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-project-diagram text-blue-600 text-xl"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-card p-6 card-hover">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm text-gray-600 mb-2">المستفيدون</p>
+                    <p class="text-3xl font-bold text-purple-600">45,283</p>
+                    <p class="text-sm text-purple-600 flex items-center mt-1">
+                        <i class="fas fa-arrow-up ml-1"></i> +8% هذا الشهر
+                    </p>
+                </div>
+                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-users text-purple-600 text-xl"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-card p-6 card-hover">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm text-gray-600 mb-2">معدل الرضا</p>
+                    <p class="text-3xl font-bold text-orange-600">94%</p>
+                    <p class="text-sm text-orange-600 flex items-center mt-1">
+                        <i class="fas fa-arrow-up ml-1"></i> +2% هذا الشهر
+                    </p>
+                </div>
+                <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-star text-orange-600 text-xl"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <!-- Performance Chart -->
+        <div class="dashboard-card p-6">
+            <h3 class="text-xl font-bold riyadh-green mb-4">أداء الشراكات الشهرية</h3>
+            <div style="height: 300px;">
+                <canvas id="performanceChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Sector Distribution -->
+        <div class="dashboard-card p-6">
+            <h3 class="text-xl font-bold riyadh-blue mb-4">توزيع القطاعات</h3>
+            <div style="height: 300px;">
+                <canvas id="sectorChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alerts and Map Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+        <!-- Alerts -->
+        <div class="dashboard-card p-6">
+            <h3 class="text-xl font-bold riyadh-green mb-4">التنبيهات والإنذارات</h3>
+            <div class="space-y-4">
+                <div class="alert-success p-4 rounded-lg flex items-center">
+                    <i class="fas fa-check-circle ml-2"></i>
+                    <div>
+                        <p class="font-semibold">مشروع جديد مكتمل</p>
+                        <p class="text-sm">تم إنجاز مشروع تجميل الحدائق</p>
+                    </div>
+                </div>
+                <div class="alert-warning p-4 rounded-lg flex items-center">
+                    <i class="fas fa-exclamation-triangle ml-2"></i>
+                    <div>
+                        <p class="font-semibold">مراجعة مطلوبة</p>
+                        <p class="text-sm">3 مشاريع تحتاج مراجعة دورية</p>
+                    </div>
+                </div>
+                <div class="alert-success p-4 rounded-lg flex items-center">
+                    <i class="fas fa-info-circle ml-2"></i>
+                    <div>
+                        <p class="font-semibold">تحديث النظام</p>
+                        <p class="text-sm">تم تحديث منصة الشراكات بنجاح</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Map -->
+        <div class="col-span-2 dashboard-card p-6">
+            <h3 class="text-xl font-bold riyadh-blue mb-4">خريطة المشاريع التفاعلية</h3>
+            <div class="bg-gray-100 rounded-lg h-80 flex items-center justify-center relative overflow-hidden">
+                <!-- Simulated Map with Project Markers -->
+                <div class="w-full h-full relative">
+                    <!-- Map Background -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-green-200 to-blue-200 opacity-30"></div>
+                    
+                    <!-- Project Markers -->
+                    <div class="absolute top-1/4 right-1/3 w-4 h-4 bg-green-500 rounded-full animate-pulse shadow-lg">
+                        <div class="absolute -top-8 -right-10 bg-green-500 text-white px-2 py-1 rounded text-xs whitespace-nowrap">
+                            مشروع البيئة - شمال الرياض
+                        </div>
+                    </div>
+                    
+                    <div class="absolute top-1/2 right-1/2 w-4 h-4 bg-blue-500 rounded-full animate-pulse shadow-lg">
+                        <div class="absolute -top-8 -right-12 bg-blue-500 text-white px-2 py-1 rounded text-xs whitespace-nowrap">
+                            مشروع التعليم - وسط الرياض
+                        </div>
+                    </div>
+                    
+                    <div class="absolute bottom-1/3 right-1/4 w-4 h-4 bg-purple-500 rounded-full animate-pulse shadow-lg">
+                        <div class="absolute -top-8 -right-10 bg-purple-500 text-white px-2 py-1 rounded text-xs whitespace-nowrap">
+                            مشروع الصحة - جنوب الرياض
+                        </div>
+                    </div>
+
+                    <div class="absolute top-3/4 left-1/3 w-4 h-4 bg-orange-500 rounded-full animate-pulse shadow-lg">
+                        <div class="absolute -top-8 -right-10 bg-orange-500 text-white px-2 py-1 rounded text-xs whitespace-nowrap">
+                            مشروع الثقافة - شرق الرياض
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Map Legend -->
+                <div class="absolute bottom-4 left-4 bg-white p-3 rounded-lg shadow-lg">
+                    <div class="text-sm font-semibold mb-2">دليل الخريطة</div>
+                    <div class="flex items-center mb-1">
+                        <div class="w-3 h-3 bg-green-500 rounded-full ml-2"></div>
+                        <span class="text-xs">مشاريع بيئية</span>
+                    </div>
+                    <div class="flex items-center mb-1">
+                        <div class="w-3 h-3 bg-blue-500 rounded-full ml-2"></div>
+                        <span class="text-xs">مشاريع تعليمية</span>
+                    </div>
+                    <div class="flex items-center mb-1">
+                        <div class="w-3 h-3 bg-purple-500 rounded-full ml-2"></div>
+                        <span class="text-xs">مشاريع صحية</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-3 h-3 bg-orange-500 rounded-full ml-2"></div>
+                        <span class="text-xs">مشاريع ثقافية</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Reports Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <!-- Financial Overview -->
+        <div class="dashboard-card p-6">
+            <h3 class="text-xl font-bold riyadh-green mb-4">النظرة المالية</h3>
+            <div style="height: 250px;">
+                <canvas id="financialChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Recent Activities -->
+        <div class="dashboard-card p-6">
+            <h3 class="text-xl font-bold riyadh-blue mb-4">الأنشطة الحديثة</h3>
+            <div class="space-y-4 max-h-60 overflow-y-auto">
+                <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                    <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center ml-3">
+                        <i class="fas fa-plus text-green-600"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-semibold text-sm">انضمام جمعية جديدة</p>
+                        <p class="text-xs text-gray-600">جمعية الرفق بالحيوان - منذ ساعتين</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center ml-3">
+                        <i class="fas fa-edit text-blue-600"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-semibold text-sm">تحديث مشروع</p>
+                        <p class="text-xs text-gray-600">مشروع تطوير المنتزهات - منذ 3 ساعات</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                    <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center ml-3">
+                        <i class="fas fa-check text-purple-600"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-semibold text-sm">اكتمال مرحلة</p>
+                        <p class="text-xs text-gray-600">المرحلة الثانية من برنامج التدريب - منذ 5 ساعات</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                    <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center ml-3">
+                        <i class="fas fa-calendar text-orange-600"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-semibold text-sm">اجتماع مجدول</p>
+                        <p class="text-xs text-gray-600">لقاء تنسيقي مع الشركاء - غداً 10:00 ص</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Statistics -->
+    <div class="dashboard-card p-6 mb-8">
+        <h3 class="text-xl font-bold riyadh-green mb-6">الإحصائيات التفصيلية</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="text-center">
+                <div class="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-chart-line text-white text-2xl"></i>
+                </div>
+                <h4 class="font-bold text-lg riyadh-green">معدل النمو الشهري</h4>
+                <p class="text-3xl font-bold text-green-600 my-2">18.5%</p>
+                <p class="text-sm text-gray-600">زيادة في عدد الشراكات الجديدة</p>
+            </div>
+
+            <div class="text-center">
+                <div class="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-target text-white text-2xl"></i>
+                </div>
+                <h4 class="font-bold text-lg riyadh-blue">تحقيق الأهداف</h4>
+                <p class="text-3xl font-bold text-blue-600 my-2">87%</p>
+                <p class="text-sm text-gray-600">من الأهداف المحددة للربع الحالي</p>
+            </div>
+
+            <div class="text-center">
+                <div class="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-award text-white text-2xl"></i>
+                </div>
+                <h4 class="font-bold text-lg text-purple-600">التميز في الأداء</h4>
+                <p class="text-3xl font-bold text-purple-600 my-2">A+</p>
+                <p class="text-sm text-gray-600">تقييم الأداء العام للشراكات</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Performance Chart
+        const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+        new Chart(performanceCtx, {
+            type: 'line',
+            data: {
+                labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو'],
+                datasets: [{
+                    label: 'الجمعيات المشتركة',
+                    data: [45, 62, 78, 98, 134, 156],
+                    borderColor: '#2d5a2d',
+                    backgroundColor: 'rgba(45, 90, 45, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }, {
+                    label: 'المشاريع المنجزة',
+                    data: [23, 34, 45, 56, 71, 89],
+                    borderColor: '#1e3a8a',
+                    backgroundColor: 'rgba(30, 58, 138, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+
+        // Sector Chart
+        const sectorCtx = document.getElementById('sectorChart').getContext('2d');
+        new Chart(sectorCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['البيئة والتنمية المستدامة', 'التعليم والتدريب', 'الصحة والرعاية', 'الثقافة والفنون', 'الرياضة والترفيه'],
+                datasets: [{
+                    data: [30, 25, 20, 15, 10],
+                    backgroundColor: ['#10b981', '#3b82f6', '#8b5cf6', '#f59e0b', '#ef4444'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    }
+                }
+            }
+        });
+
+        // Financial Chart
+        const financialCtx = document.getElementById('financialChart').getContext('2d');
+        new Chart(financialCtx, {
+            type: 'bar',
+            data: {
+                labels: ['الربع الأول', 'الربع الثاني', 'الربع الثالث', 'الربع الرابع'],
+                datasets: [{
+                    label: 'الميزانية المخصصة (مليون ريال)',
+                    data: [12.5, 18.7, 22.3, 28.9],
+                    backgroundColor: 'rgba(45, 90, 45, 0.8)',
+                    borderRadius: 5
+                }, {
+                    label: 'المصروف الفعلي (مليون ريال)',
+                    data: [10.2, 16.4, 19.8, 25.1],
+                    backgroundColor: 'rgba(30, 58, 138, 0.8)',
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+
+        // Add some interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate counters
+            const counters = document.querySelectorAll('.text-3xl');
+            counters.forEach(counter => {
+                if (counter.textContent.match(/\d+/)) {
+                    const target = parseInt(counter.textContent.replace(/[^\d]/g, ''));
+                    let current = 0;
+                    const increment = target / 50;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        counter.textContent = counter.textContent.replace(/\d+/, Math.floor(current));
+                    }, 30);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDrMg7PqdCCKtbMEPZI8CMBl6gvZ9WtwEELNvS%2FtHqnYKB7UqKNf9GA1DGfJ6twL79fgBwMFty0FEQ%2FGTJ5SyFjTOLwixXHJfK12oRe1T%2Fo%2FIaERCY9vmKIlwN2OgK160YMF5Dc%2BOaAMpo%2F5eKuvAg6L%2Fu5uIYuX2ErfiRBT1jgMHYhWVUR62ysV%2FC4ITwKB%2FmZLRvrhJGJzhS4IYB60GGsZconwFWjuxeoyjE%2BgBP4oUK%2BZdYH0wOwahvgHv8ZHPTeB1VGJ4o1pSeuDCf6R2ZiyO1AV7MkVzG9p5lN0Lvo6HcK%2BKnV%2BG9y78EPeOshhCxsYxN2l6ThjN6uC%2Bn5FJ%2BaQ3fheko4Ix9TVeJmy6kLOcBiEj4NZvsiXqwQHkDtcJYQzfZK7250zBrNgkGTTIDJza%2Fk0tw%2Fkd5DtvDw%2BCx4UcQpoH%2FYRTQCEO4dDqtPsS26cdcMr%2BQtggKweLdSdc7gx7%2FxN6EF3tqxIwwv9poYs8%2BTEOpeCOVdeWq70pmoNjq7H4teluajqlHupAarfHk9E%3D";
+        window.__genspark_locale = "en-US";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDrMg7PqdCCKtbMEPZI8CMBl6gvZ9WtwEELNvS/tHqnYKB7UqKNf9GA1DGfJ6twL79fgBwMFty0FEQ/GTJ5SyFjTOLwixXHJfK12oRe1T/o/IaERCY9vmKIlwN2OgK160YMF5Dc+OaAMpo/5eKuvAg6L/u5uIYuX2ErfiRBT1jgMHYhWVUR62ysV/C4ITwKB/mZLRvrhJGJzhS4IYB60GGsZconwFWjuxeoyjE+gBP4oUK+ZdYH0wOwahvgHv8ZHPTeB1VGJ4o1pSeuDCf6R2ZiyO1AV7MkVzG9p5lN0Lvo6HcK+KnV+G9y78EPeOshhCxsYxN2l6ThjN6uC+n5FJ+aQ3fheko4Ix9TVeJmy6kLOcBiEj4NZvsiXqwQHkDtcJYQzfZK7250zBrNgkGTTIDJza/k0tw/kd5DtvDw+Cx4UcQpoH/YRTQCEO4dDqtPsS26cdcMr+QtggKweLdSdc7gx7/xN6EF3tqxIwwv9poYs8+TEOpeCOVdeWq70pmoNjq7H4teluajqlHupAarfHk9E=";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+    
